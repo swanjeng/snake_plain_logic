@@ -30,11 +30,11 @@ int move(Point *snake, int *snakeLength, int dir, int row, int col, Point food) 
 
     int val = 0;
     if (PointEqual(food, newHead)) {
-        *snakeLength ++;
+        *snakeLength += 1;
         val = 1;
     }
 
-    for (int i = *snakeLength - 2 ; i > 0 ; i --) {
+    for (int i = *snakeLength - 2 ; i >= 0 ; i --) {
         snake[i + 1] = snake[i];
     }
 
@@ -86,7 +86,7 @@ int main() {
     int input = 0;
     while (scanf("%d", &input) != EOF && input != -1) {
         if (move(snake, &snakeLength, input, row, col, food) == 1) {
-            printf("got food, len ++\n");
+            // printf("got food, len ++ (%d)\n", snakeLength);
             while (!validFoodPos(food, snake, snakeLength)) {
                 food.x = rand() % row;
                 food.y = rand() % col;
